@@ -15,8 +15,9 @@ window.OCREngine = {
         this.isProcessing = true;
 
         try {
-            // Lazy load worker
-            const worker = await Tesseract.createWorker({
+            // Initialize worker with English by default
+            // Tesseract.js v6+ signature: createWorker(langs, oem, options)
+            const worker = await Tesseract.createWorker('eng', 1, {
                 workerPath: chrome.runtime.getURL('ocr/lib/worker.min.js'),
                 corePath: chrome.runtime.getURL('ocr/lib/tesseract-core.wasm.js'),
                 logger: m => {
@@ -25,9 +26,7 @@ window.OCREngine = {
                     }
                 }
             });
-
-            await worker.loadLanguage('eng');
-            await worker.initialize('eng');
+            // v6+ does loadLanguage and initialize automatically when langs is provided to createWorker
 
             const { data: { text } } = await worker.recognize(imageSource);
 

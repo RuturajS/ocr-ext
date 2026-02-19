@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "OCR Reader Kit",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Ultra-lightweight in-browser OCR tool.",
     "permissions": [
         "activeTab",
