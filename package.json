@@ -1,0 +1,23 @@
+{
+  "name": "ocr-ext",
+  "version": "1.0.0",
+  "description": "ocr-extension",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RuturajS/ocr-ext.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RuturajS/ocr-ext/issues"
+  },
+  "homepage": "https://github.com/RuturajS/ocr-ext#readme",
+  "dependencies": {
+    "tesseract.js": "^7.0.0"
+  }
+}
