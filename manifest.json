@@ -1,48 +1,63 @@
 {
-  "manifest_version": 3,
-  "name": "OCR Reader Kit",
-  "version": "1.0.0",
-  "description": "Ultra-lightweight in-browser OCR tool.",
-  "permissions": [
-    "activeTab",
-    "scripting",
-    "contextMenus",
-    "storage"
-  ],
-  "host_permissions": [
-    "<all_urls>"
-  ],
-  "background": {
-    "service_worker": "background.js"
-  },
-  "action": {
-    "default_popup": "popup/popup.html",
-    "default_title": "OCR Reader Kit"
-  },
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "css": ["styles/minimal.css"],
-      "js": ["ocr/lib/tesseract.min.js", "content/ui.js", "content/selection.js", "content/inject.js"],
-      "run_at": "document_idle"
+    "manifest_version": 3,
+    "name": "OCR Reader Kit",
+    "version": "1.0.1",
+    "description": "Ultra-lightweight in-browser OCR tool.",
+    "permissions": [
+        "activeTab",
+        "scripting",
+        "contextMenus",
+        "storage"
+    ],
+    "host_permissions": [
+        "<all_urls>"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_popup": "popup/popup.html",
+        "default_title": "OCR Reader Kit"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "css": [
+                "styles/minimal.css"
+            ],
+            "js": [
+                "ocr/lib/tesseract.min.js",
+                "ocr/engine.js",
+                "content/ui.js",
+                "content/selection.js",
+                "content/inject.js"
+            ],
+            "run_at": "document_idle"
+        }
+    ],
+    "commands": {
+        "scan-area": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+S",
+                "mac": "Command+Shift+S"
+            },
+            "description": "Select area to scan"
+        }
+    },
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "ocr/lib/*",
+                "styles/*"
+            ],
+            "matches": [
+                "<all_urls>"
+            ]
+        }
+    ],
+    "content_security_policy": {
+        "extension_pages": "script-src 'self'; object-src 'self'"
     }
-  ],
-  "commands": {
-    "scan-area": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+S",
-        "mac": "Command+Shift+S"
-      },
-      "description": "Select area to scan"
-    }
-  },
-  "web_accessible_resources": [
-    {
-      "resources": ["ocr/lib/*", "styles/*"],
-      "matches": ["<all_urls>"]
-    }
-  ],
-  "content_security_policy": {
-    "extension_pages": "script-src 'self'; object-src 'self'"
-  }
 }
